@@ -13,6 +13,7 @@
             color: #00ff00;
             font-family: 'Courier New', Courier, monospace;
             height: 100%;
+            width: 100%;
         }
         #matrixCanvas {
             position: fixed;
@@ -26,6 +27,7 @@
             position: relative;
             z-index: 1;
             padding: 20px;
+            background: rgba(0, 0, 0, 0.7); /* Add a background to make the text more readable */
         }
     </style>
 </head>
@@ -63,9 +65,9 @@
         canvas.height = window.innerHeight;
 
         // Characters - array of random characters
-        const letters = Array(256).join('1').split('');
+        const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-        const fontSize = 10;
+        const fontSize = 16;
         const columns = canvas.width / fontSize;
 
         const drops = Array(Math.floor(columns)).fill(1);
@@ -97,6 +99,14 @@
 
         // Draw every 33 milliseconds
         setInterval(draw, 33);
+
+        // Adjust canvas size on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            drops.length = Math.floor(canvas.width / fontSize);
+            drops.fill(1);
+        });
     </script>
 </body>
 </html>
