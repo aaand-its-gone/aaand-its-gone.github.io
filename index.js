@@ -1,39 +1,34 @@
-const canvas = document.getElementById('canv');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const ctx = canvas.getContext('2d');
-let cols = Math.floor(window.innerWidth / 20) + 1;
-let ypos = Array(cols).fill(0);
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
 
-ctx.fillStyle = '#000';
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+c.height = window.innerHeight;
+c.width = window.innerWidth;
 
-function matrix () {
-  const w = window.innerWidth;
-  const h = window.innerHeight;
-  
-  if (canvas.width !== w) {
-    canvas.width = w;
-    cols = Math.floor(window.innerWidth / 20) + 1;
-    ypos = Array(cols).fill(0);
+var chinese =
+  "𡨸漢𡨸儒漢字한자漢字𡨸漢𡨸儒漢字한자漢字𡨸漢𡨸儒漢字한자漢字𡨸漢𡨸儒漢字한자漢字𡨸漢𡨸儒漢字한자漢字𡨸漢𡨸儒漢𡨸儒漢字한자漢字";
+
+chinese = chinese.split("");
+
+var font_size = 10;
+var columns = c.width / font_size;
+
+var drops = [];
+
+for (var x = 0; x < columns; x++) drops[x] = 1;
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.05";
+  ctx.fillRect(0, 0, c.width, c.height);
+  ctx.fillStyle = "#0F0";
+  ctx.font = font_size + "px arial";
+
+  for (var i = 0; i < drops.length; i++) {
+    var text = chinese[Math.floor(Math.random() * chinese.length)];
+    ctx.fillText(text, i * font_size, drops[i] * font_size);
+
+    if (drops[i] * font_size > c.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
   }
-  if (canvas.height !== h) {
-    canvas.height = h;
-  }
-
-  ctx.fillStyle = '#0001';
-  ctx.fillRect(0, 0, w, h);
-
-  ctx.fillStyle = '#0f0';
-  ctx.font = '15pt monospace';
-
-  ypos.forEach((y, ind) => {
-    const text = String.fromCharCode(Math.random() * 128);
-    const x = ind * 20;
-    ctx.fillText(text, x, y);
-    if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-    else ypos[ind] = y + 20;
-  });
 }
 
-setInterval(matrix, 50);
+setInterval(draw,33)
