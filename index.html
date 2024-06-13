@@ -3,45 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix REKT</title>
-    <link rel="stylesheet" href="./index.css">
+    <title>Matrix Rain Background</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: black;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-      <center>
-         <img src="img/boom-boffin.gif" width="25%"><img src="img/merch-1.jpg" width="25%"><img src="img/boom-boffin.gif" width="25%">
-         <p style = "color:rgb(255,253,208); font-size:40px;">
-            MATRIX token
-         </p>
-         <p style="color:rgb(255,253,208); font-size:18px;">
-            Jew
-         </p>
-         <audio controls>
-            <source src="audio/heil_myself.mp3" type="audio/mp3">
-         </audio>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Asset details
-         </p>
-         <p>
-            <a href="https://blockstream.info/liquid/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(255,253,208)">blockstream.info</a>
-            <a href="https://liquid.network/assets/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(255,253,208)">mempool.space</a>
-         </p>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Wallets
-         </p>
-         <p>
-            <a href="https://vulpem.com/marina" target="_blank" style="color:rgb(255,253,208)">Marina</a>
-            <a href="https://blockstream.com/green/" target="_blank" style="color:rgb(255,253,208)">Blockstream Green</a>
-            <a href="https://sideswap.io/" target="_blank" style="color:rgb(255,253,208)">SideSwap</a>
-         </p>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Markets
-         </p>
-         <p>
-            <a href="https://sideswap.io/swap-market/?product=Jew" target="_blank" style="color:rgb(255,253,208)">SideSwap</a>
-            <a href="https://tdex.network/" target="_blank" style="color:rgb(255,253,208)">TDEX</a>
-         </p>
-      </center>
-    <canvas id="c"></canvas>
-    <script src="./index.js"></script>
+    <canvas id="matrixCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set the canvas to full screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Characters - array of random characters
+        const letters = Array(256).join('1').split('');
+
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            // Clear the canvas with a transparent black to give a fading effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Set the font style
+            ctx.fillStyle = '#00ff00';
+            ctx.font = `${fontSize}px monospace`;
+
+            // Loop over the drops array
+            drops.forEach((y, i) => {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                const x = i * fontSize;
+                ctx.fillText(text, x, y * fontSize);
+
+                // Randomly reset drop to the top of the canvas
+                if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                // Increment Y coordinate for the drop
+                drops[i]++;
+            });
+        }
+
+        // Draw every 33 milliseconds
+        setInterval(draw, 33);
+    </script>
 </body>
 </html>
