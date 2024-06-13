@@ -1,100 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix Rain Background with Lorem Ipsum</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: black;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>Scrolling Page</title> 
+  <style>
+    #canvas1 {
+      position:absolute;    /* Take the element out of the normal document flow */
+      z-index:-1;           /* Place the element behind normal content */
+      top:0;                /* Start at top of viewport */
+      left:0;               /* Start at left edge of viewport */  
+    }
+  </style>
+</head> 
+<body> 
+  <canvas id="canvas1"></canvas> 
+  <h1>Text</h1>
+  <p>text</p>
+
+  <script>
+    var can = document.getElementById("canvas1");
+    var ctx = can.getContext('2d');
+    can.width = 9200; 
+    can.height = 630; 
+    var img = new Image(); 
+    img.src = "https://cdn.pixabay.com/photo/2019/02/19/19/45/thumbs-up-4007573__340.png";
+    window.onload = function() { 
+      var imgWidth = 0; 
+      var scrollSpeed = 10; 
+      function loop() { 
+        ctx.drawImage(img, imgWidth, 0); 
+        ctx.drawImage(img, imgWidth - can.width, 0); 
+        imgWidth -= scrollSpeed; 
+        if (-imgWidth == can.width) {
+            imgWidth = 0; 
         }
-        #matrixCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-        .content {
-            position: relative;
-            z-index: 1;
-            color: #00ff00;
-            padding: 20px;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="matrixCanvas"></canvas>
-    <div class="content">
-        <h1>Lorem Ipsum</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet 
-            ultrices ligula, nec varius eros blandit vel. Aenean posuere eros vitae eros 
-            facilisis, sed auctor libero porttitor. Suspendisse potenti. Praesent ac tortor 
-            ut est aliquet tempor. In tincidunt dui eu augue volutpat, quis egestas nisl 
-            aliquam. Nam vitae nibh sed libero sodales elementum in non libero. 
-        </p>
-        <p>
-            Integer aliquet lacus ut massa scelerisque, sed pulvinar lacus venenatis. 
-            Suspendisse potenti. Cras tincidunt turpis vitae magna gravida, at efficitur 
-            ligula fermentum. Nulla facilisi. Aliquam erat volutpat. Nulla vestibulum, urna 
-            nec vehicula imperdiet, justo purus aliquet lorem, non luctus dui risus in nunc. 
-        </p>
-        <p>
-            Maecenas auctor lacinia ligula nec ornare. Vivamus id velit lectus. Etiam eget 
-            neque nisi. Curabitur ac nulla a ligula scelerisque varius. Sed nec arcu sit 
-            amet felis vehicula luctus. Aliquam in metus nec felis gravida sodales ac vel 
-            metus. Sed a vestibulum risus. Proin dapibus euismod odio, in consectetur risus 
-            auctor et. Curabitur id vestibulum risus.
-        </p>
-    </div>
-    <script>
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Set the canvas to full screen
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Characters - array of random characters
-        const letters = Array(256).join('1').split('');
-
-        const fontSize = 10;
-        const columns = canvas.width / fontSize;
-
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function draw() {
-            // Clear the canvas with a transparent black to give a fading effect
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Set the font style
-            ctx.fillStyle = '#00ff00';
-            ctx.font = `${fontSize}px monospace`;
-
-            // Loop over the drops array
-            drops.forEach((y, i) => {
-                const text = letters[Math.floor(Math.random() * letters.length)];
-                const x = i * fontSize;
-                ctx.fillText(text, x, y * fontSize);
-
-                // Randomly reset drop to the top of the canvas
-                if (y * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-
-                // Increment Y coordinate for the drop
-                drops[i]++;
-            });
-        }
-
-        // Draw every 33 milliseconds
-        setInterval(draw, 33);
-    </script>
+        window.requestAnimationFrame(loop); 
+      } 
+      loop();
+    }  
+  </script>
 </body>
 </html>
