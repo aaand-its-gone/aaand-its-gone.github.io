@@ -1,41 +1,50 @@
-const canvas = document.getElementById('Matrix');
-const context = canvas.getContext('2d');
+        var c = document.getElementById("c");
+        var ctx = c.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+        //making the canvas full screen
+        c.height = window.innerHeight;
+        c.width = window.innerWidth;
 
-const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const nums = '0123456789';
+        //chinese characters - taken from the unicode charset
+        var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        //converting the string into an array of single characters
+        matrix = matrix.split("");
 
-const alphabet = katakana + latin + nums;
+        var font_size = 10;
+        var columns = c.width/font_size; //number of columns for the rain
+        //an array of drops - one per column
+        var drops = [];
+        //x below is the x coordinate
+        //1 = y co-ordinate of the drop(same for every drop initially)
+        for(var x = 0; x < columns; x++)
+            drops[x] = 1; 
 
-const fontSize = 16;
-const columns = canvas.width/fontSize;
+        //drawing the characters
+        function draw()
+        {
+            //Black BG for the canvas
+            //translucent BG to show trail
+            ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+            ctx.fillRect(0, 0, c.width, c.height);
 
-const rainDrops = [];
+            ctx.fillStyle = "#f4427d";//green text
+            ctx.font = font_size + "px arial";
+            //looping over drops
+            for(var i = 0; i < drops.length; i++)
+            {
+                //a random chinese character to print
+                var text = matrix[Math.floor(Math.random()*matrix.length)];
+                //x = i*font_size, y = value of drops[i]*font_size
+                ctx.fillText(text, i*font_size, drops[i]*font_size);
 
-for( let x = 0; x < columns; x++ ) {
-	rainDrops[x] = 1;
-}
+                //sending the drop back to the top randomly after it has crossed the screen
+                //adding a randomness to the reset to make the drops scattered on the Y axis
+                if(drops[i]*font_size > c.height && Math.random() > 0.975)
+                    drops[i] = 0;
 
-const draw = () => {
-	context.fillStyle = 'rgba(0, 0, 0, 0.05)';
-	context.fillRect(0, 0, canvas.width, canvas.height);
-	
-	context.fillStyle = '#0F0';
-	context.font = fontSize + 'px monospace';
-
-	for(let i = 0; i < rainDrops.length; i++)
-	{
-		const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-		context.fillText(text, i*fontSize, rainDrops[i]*fontSize);
-		
-		if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
-			rainDrops[i] = 0;
+                //incrementing Y coordinate
+                drops[i]++;
+            }
         }
-		rainDrops[i]++;
-	}
-};
 
-setInterval(draw, 30);
+        setInterval(draw, 35);
