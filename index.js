@@ -1,3 +1,4 @@
+// geting canvas by Boujjou Achraf
         var c = document.getElementById("c");
         var ctx = c.getContext("2d");
 
@@ -27,7 +28,7 @@
             ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
             ctx.fillRect(0, 0, c.width, c.height);
 
-            context.fillStyle = "#f4427d";//green text
+            ctx.fillStyle = "#f4427d";//green text
             ctx.font = font_size + "px arial";
             //looping over drops
             for(var i = 0; i < drops.length; i++)
