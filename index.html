@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix Rain Background</title>
+    <title>Matrix Rain Background with Lorem Ipsum</title>
     <style>
         body, html {
             margin: 0;
@@ -13,13 +13,45 @@
             color: #00ff00;
             font-family: 'Courier New', Courier, monospace;
         }
-        canvas {
-            display: block;
+        #matrixCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            color: #00ff00;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
     <canvas id="matrixCanvas"></canvas>
+    <div class="content">
+        <h1>Lorem Ipsum</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet 
+            ultrices ligula, nec varius eros blandit vel. Aenean posuere eros vitae eros 
+            facilisis, sed auctor libero porttitor. Suspendisse potenti. Praesent ac tortor 
+            ut est aliquet tempor. In tincidunt dui eu augue volutpat, quis egestas nisl 
+            aliquam. Nam vitae nibh sed libero sodales elementum in non libero. 
+        </p>
+        <p>
+            Integer aliquet lacus ut massa scelerisque, sed pulvinar lacus venenatis. 
+            Suspendisse potenti. Cras tincidunt turpis vitae magna gravida, at efficitur 
+            ligula fermentum. Nulla facilisi. Aliquam erat volutpat. Nulla vestibulum, urna 
+            nec vehicula imperdiet, justo purus aliquet lorem, non luctus dui risus in nunc. 
+        </p>
+        <p>
+            Maecenas auctor lacinia ligula nec ornare. Vivamus id velit lectus. Etiam eget 
+            neque nisi. Curabitur ac nulla a ligula scelerisque varius. Sed nec arcu sit 
+            amet felis vehicula luctus. Aliquam in metus nec felis gravida sodales ac vel 
+            metus. Sed a vestibulum risus. Proin dapibus euismod odio, in consectetur risus 
+            auctor et. Curabitur id vestibulum risus.
+        </p>
+    </div>
     <script>
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
@@ -64,40 +96,5 @@
         // Draw every 33 milliseconds
         setInterval(draw, 33);
     </script>
-
-      <center>
-         <img src="img/boom-boffin.gif" width="25%"><img src="img/merch-1.jpg" width="25%"><img src="img/boom-boffin.gif" width="25%">
-         <p style = "color:rgb(255,253,208); font-size:40px;">
-            MATRIX token
-         </p>
-         <p style="color:rgb(255,253,208); font-size:18px;">
-            Jew
-         </p>
-         <audio controls>
-            <source src="audio/heil_myself.mp3" type="audio/mp3">
-         </audio>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Asset details
-         </p>
-         <p>
-            <a href="https://blockstream.info/liquid/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(255,253,208)">blockstream.info</a>
-            <a href="https://liquid.network/assets/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(255,253,208)">mempool.space</a>
-         </p>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Wallets
-         </p>
-         <p>
-            <a href="https://vulpem.com/marina" target="_blank" style="color:rgb(255,253,208)">Marina</a>
-            <a href="https://blockstream.com/green/" target="_blank" style="color:rgb(255,253,208)">Blockstream Green</a>
-            <a href="https://sideswap.io/" target="_blank" style="color:rgb(255,253,208)">SideSwap</a>
-         </p>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Markets
-         </p>
-         <p>
-            <a href="https://sideswap.io/swap-market/?product=Jew" target="_blank" style="color:rgb(255,253,208)">SideSwap</a>
-            <a href="https://tdex.network/" target="_blank" style="color:rgb(255,253,208)">TDEX</a>
-         </p>
-      </center>
 </body>
 </html>
