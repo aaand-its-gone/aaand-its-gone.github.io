@@ -1,27 +1,18 @@
-html {
-  background: black;
-  height: 100%;
-  overflow: hidden;
-}
-
 body {
   margin: 0;
-  padding: 0;
-  height: 100%;
+  background-color: #000;
 }
 
-
-/* Color of the text - you can change it as you need. */
-
-div {
-  color: red;
+.container {
+  background-color: rgba(255, 255, 255, 0.85);
+  margin: 50px 10%;
+  padding: 3rem;
+  position: relative;
+  z-index: 1;
 }
 
-
-/* These are the properties applied to div that has the "innerDiv" class - you can change it as you need. */
-
-.innerDiv {
-  position: absolute;
-  left: 10px;
-  top: 10px;
+#canv {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
