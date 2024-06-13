@@ -53,26 +53,51 @@
   
 
   <script>
-    var can = document.getElementById("canvas1");
-    var ctx = can.getContext('2d');
-    can.width = 9200; 
-    can.height = 630; 
-    var img = new Image(); 
-    img.src = "https://cdn.pixabay.com/photo/2019/02/19/19/45/thumbs-up-4007573__340.png";
-    window.onload = function() { 
-      var imgWidth = 0; 
-      var scrollSpeed = 10; 
-      function loop() { 
-        ctx.drawImage(img, imgWidth, 0); 
-        ctx.drawImage(img, imgWidth - can.width, 0); 
-        imgWidth -= scrollSpeed; 
-        if (-imgWidth == can.width) {
-            imgWidth = 0; 
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set the canvas to full screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Characters - array of random characters
+        const letters = Array(256).join('1').split('');
+
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            // Clear the canvas with a transparent black to give a fading effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Set the font style
+            ctx.fillStyle = '#00ff00';
+            ctx.font = `${fontSize}px monospace`;
+
+            // Loop over the drops array
+            drops.forEach((y, i) => {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                const x = i * fontSize;
+                ctx.fillText(text, x, y * fontSize);
+
+                // Randomly reset drop to the top of the canvas
+                if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                // Increment Y coordinate for the drop
+                drops[i]++;
+            });
         }
-        window.requestAnimationFrame(loop); 
-      } 
-      loop();
-    }  
+
+        // Draw every 33 milliseconds
+        setInterval(draw, 33);
+
+
+    
   </script>
 </body>
 </html>
