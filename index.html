@@ -1,103 +1,15 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-  <title>Scrolling Page</title> 
-  <style>
-    #canvas1 {
-      position:absolute;    /* Take the element out of the normal document flow */
-      z-index:-1;           /* Place the element behind normal content */
-      top:0;                /* Start at top of viewport */
-      left:0;               /* Start at left edge of viewport */  
-    }
-  </style>
-</head> 
-<body> 
-   <canvas id="matrixCanvas"></canvas>
-
-
-        <center>
-         <img src="img/boom-boffin.gif" width="25%"><img src="img/merch-1.jpg" width="25%"><img src="img/boom-boffin.gif" width="25%">
-         <p style = "color:rgb(255,253,208); font-size:40px;">
-            MATRIX token
-         </p>
-         <p style="color:rgb(255,253,208); font-size:18px;">
-            Jew
-         </p>
-         <audio controls>
-            <source src="audio/heil_myself.mp3" type="audio/mp3">
-         </audio>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Asset details
-         </p>
-         <p>
-            <a href="https://blockstream.info/liquid/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(255,253,208)">blockstream.info</a>
-            <a href="https://liquid.network/assets/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(255,253,208)">mempool.space</a>
-         </p>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Wallets
-         </p>
-         <p>
-            <a href="https://vulpem.com/marina" target="_blank" style="color:rgb(255,253,208)">Marina</a>
-            <a href="https://blockstream.com/green/" target="_blank" style="color:rgb(255,253,208)">Blockstream Green</a>
-            <a href="https://sideswap.io/" target="_blank" style="color:rgb(255,253,208)">SideSwap</a>
-         </p>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Markets
-         </p>
-         <p>
-            <a href="https://sideswap.io/swap-market/?product=Jew" target="_blank" style="color:rgb(255,253,208)">SideSwap</a>
-            <a href="https://tdex.network/" target="_blank" style="color:rgb(255,253,208)">TDEX</a>
-         </p>
-      </center>
-
-  
-
-  <script>
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Set the canvas to full screen
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Characters - array of random characters
-        const letters = Array(256).join('1').split('');
-
-        const fontSize = 10;
-        const columns = canvas.width / fontSize;
-
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function draw() {
-            // Clear the canvas with a transparent black to give a fading effect
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Set the font style
-            ctx.fillStyle = '#00ff00';
-            ctx.font = `${fontSize}px monospace`;
-
-            // Loop over the drops array
-            drops.forEach((y, i) => {
-                const text = letters[Math.floor(Math.random() * letters.length)];
-                const x = i * fontSize;
-                ctx.fillText(text, x, y * fontSize);
-
-                // Randomly reset drop to the top of the canvas
-                if (y * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-
-                // Increment Y coordinate for the drop
-                drops[i]++;
-            });
+<html>
+<head>
+    <style type="text/css"></style>
+    <script>
+        function TheMatrix()
+        {
+            for(s=window.screen,w=q.width=s.width,h=q.height=s.height,m=Math.random,p=[],i=0;i<256;p[i++]=1);
+            setInterval('9Style=\'rgba(0,0,0,.05)\'9Rect(0,0,w,h)9Style=\'#0F0\';p.map(function(v,i){9Text(String.fromCharCode(3e4+m()*33),i*10,v);p[i]=v>758+m()*1e4?0:v+10})'.split(9).join(';q.getContext(\'2d\').fill'),33)
         }
-
-        // Draw every 33 milliseconds
-        setInterval(draw, 33);
-
-
-    
-  </script>
+    </script>
+</head>
+<body style="margin:0" onload="javascript:TheMatrix();">
+<canvas id="q" style="margin: 0; padding: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
 </body>
 </html>
