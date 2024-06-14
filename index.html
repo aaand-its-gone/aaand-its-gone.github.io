@@ -57,44 +57,44 @@ canvas {
 
 
 <script>
-const canvas = document.getElementById('Matrix');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const ctx = canvas.getContext('2d');
-let cols = Math.floor(window.innerWidth / 20) + 1;
-let ypos = Array(cols).fill(0);
+var rainNum = 100;
 
-ctx.fillStyle = '#000';
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+var canvas = document.getElementById('Matrix');
+var ctx = canvas.getContext('2d');
 
-function matrix () {
-  const w = window.innerWidth;
-  const h = window.innerHeight;
-  
-  if (canvas.width !== w) {
-    canvas.width = w;
-    cols = Math.floor(window.innerWidth / 20) + 1;
-    ypos = Array(cols).fill(0);
-  }
-  if (canvas.height !== h) {
-    canvas.height = h;
-  }
+var w = window.innerWidth / 1.1; var h = window.innerHeight / 1.1;
+var x = 100; var y = 100;
 
-  ctx.fillStyle = '#0001';
-  ctx.fillRect(0, 0, w, h);
-
-  ctx.fillStyle = '#0f0';
-  ctx.font = '15pt monospace';
-
-  ypos.forEach((y, ind) => {
-    const text = String.fromCharCode(Math.random() * 128);
-    const x = ind * 20;
-    ctx.fillText(text, x, y);
-    if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-    else ypos[ind] = y + 20;
-  });
+var rain = [];
+for(i = 0; i < rainNum; i++) {
+  rain.push(new newRain);
 }
 
-setInterval(matrix, 50);
+function newRain() {
+  this.x = Math.random() * w;
+  this.y = Math.random() * h;
+}
+
+var draw = function() {
+  c.width = w;
+  c.height = h;
+
+  for(t = 0; t < rain.length; t++) {
+    var r = rain[t];
+
+    ctx.beginPath();
+    ctx.fillStyle = 'black';
+    ctx.fillRect(r.x, r.y, 2, 20);
+
+    r.y++;
+
+    if(r.y > h + 20) {
+      r.y = -20;
+    }
+  }
+};
+
+setInterval(draw, 3);
 </script>
+
 
