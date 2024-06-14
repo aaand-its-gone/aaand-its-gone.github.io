@@ -1,105 +1,100 @@
 <html>
-<head>
-<title>Matrix REKT</title>
-    <style>
-        * {margin: 0; padding: 0;}
-        body {background: black;}
-canvas {display: block;}
-    </style>
-</head>
-    
-<body>		
-    <canvas id="c"></canvas>	
-</body>
-
-<script>
-
-var c = document.getElementById("c");
-var ctx = c.getContext("2d");
-
-//making the canvas full screen
-c.height = 500;
-c.width = window.innerWidth;
-
-//english characters
-var english = "1001010101110101010101010010101000101011101111010101010110101010101010101110000101";
-//converting the string into an array of single characters
-english = english.split("");
-
-var font_size = 15;
-var columns = c.width/font_size; //number of columns for the rain
-//an array of drops - one per column
-var drops = [];
-//x below is the x coordinate
-//1 = y co-ordinate of the drop(same for every drop initially)
-for(var x = 0; x < columns; x++)
-	drops[x] = 1; 
-
-//drawing the characters
-function draw()
-{
-	//Black BG for the canvas
-	//translucent BG to show trail
-	ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-	ctx.fillRect(0, 0, c.width, c.height);
-	
-	ctx.fillStyle = "#0F0"; //green text
-	ctx.font = font_size + "px arial";
-	//looping over drops
-	for(var i = 0; i < drops.length; i++)
-	{
-		//a random chinese character to print
-		var text = english[Math.floor(Math.random()*english.length)];
-		//x = i*font_size, y = value of drops[i]*font_size
-		ctx.fillText(text, i*font_size, drops[i]*font_size);
-		
-		//sending the drop back to the top randomly after it has crossed the screen
-		//adding a randomness to the reset to make the drops scattered on the Y axis
-		if(drops[i]*font_size > c.height && Math.random() > 0.975)
-			drops[i] = 0;
-		
-		//incrementing Y coordinate
-		drops[i]++;
-	}
-}
-
-setInterval(draw, 33);
-    </script>
-
-	
-      <center>
-         <img src="img/boom-boffin.gif" width="25%"><img src="img/merch-1.jpg" width="25%"><img src="img/boom-boffin.gif" width="25%">
-         <p style = "color:rgb(255,253,208); font-size:40px;">
-            MATRIX token
-         </p>
-         <p style="color:rgb(255,253,208); font-size:18px;">
-            Jew
-         </p>
-         <audio controls>
-            <source src="audio/heil_myself.mp3" type="audio/mp3">
-         </audio>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Asset details
-         </p>
-         <p>
-            <a href="https://blockstream.info/liquid/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(255,253,208)">blockstream.info</a>
-            <a href="https://liquid.network/assets/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(255,253,208)">mempool.space</a>
-         </p>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Wallets
-         </p>
-         <p>
-            <a href="https://vulpem.com/marina" target="_blank" style="color:rgb(255,253,208)">Marina</a>
-            <a href="https://blockstream.com/green/" target="_blank" style="color:rgb(255,253,208)">Blockstream Green</a>
-            <a href="https://sideswap.io/" target="_blank" style="color:rgb(255,253,208)">SideSwap</a>
-         </p>
-         <p style="color:rgb(255,253,208); font-size:16px;">
-            Markets
-         </p>
-         <p>
-            <a href="https://sideswap.io/swap-market/?product=Jew" target="_blank" style="color:rgb(255,253,208)">SideSwap</a>
-            <a href="https://tdex.network/" target="_blank" style="color:rgb(255,253,208)">TDEX</a>
-         </p>
-      </center>
-	
+   <head>
+      <title>Matrix REKT</title>
+      <style>
+         * {margin: 0; padding: 0;}
+         body {background: black;}
+         canvas {display: block;}
+      </style>
+   </head>
+   <body>
+      <canvas id="c"></canvas>
+   </body>
+   <script>
+      var c = document.getElementById("c");
+      var ctx = c.getContext("2d");
+      
+      //making the canvas full screen
+      c.height = 500;
+      c.width = window.innerWidth;
+      
+      //english characters
+      var english = "1001010101110101010101010010101000101011101111010101010110101010101010101110000101";
+      //converting the string into an array of single characters
+      english = english.split("");
+      
+      var font_size = 15;
+      var columns = c.width/font_size; //number of columns for the rain
+      //an array of drops - one per column
+      var drops = [];
+      //x below is the x coordinate
+      //1 = y co-ordinate of the drop(same for every drop initially)
+      for(var x = 0; x < columns; x++)
+      	drops[x] = 1; 
+      
+      //drawing the characters
+      function draw()
+      {
+      	//Black BG for the canvas
+      	//translucent BG to show trail
+      	ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      	ctx.fillRect(0, 0, c.width, c.height);
+      	
+      	ctx.fillStyle = "#0F0"; //green text
+      	ctx.font = font_size + "px arial";
+      	//looping over drops
+      	for(var i = 0; i < drops.length; i++)
+      	{
+      		//a random chinese character to print
+      		var text = english[Math.floor(Math.random()*english.length)];
+      		//x = i*font_size, y = value of drops[i]*font_size
+      		ctx.fillText(text, i*font_size, drops[i]*font_size);
+      		
+      		//sending the drop back to the top randomly after it has crossed the screen
+      		//adding a randomness to the reset to make the drops scattered on the Y axis
+      		if(drops[i]*font_size > c.height && Math.random() > 0.975)
+      			drops[i] = 0;
+      		
+      		//incrementing Y coordinate
+      		drops[i]++;
+      	}
+      }
+      
+      setInterval(draw, 33);
+          
+   </script>
+   <center>
+      <img src="img/boom-boffin.gif" width="25%"><img src="img/merch-1.jpg" width="25%"><img src="img/boom-boffin.gif" width="25%">
+      <p style = "color:rgb(0,255,0); font-size:40px;">
+         MATRIX token
+      </p>
+      <p style="color:rgb(0,255,0); font-size:18px;">
+         Jew
+      </p>
+      <audio controls>
+         <source src="audio/heil_myself.mp3" type="audio/mp3">
+      </audio>
+      <p style="color:rgb(0,255,0); font-size:16px;">
+         Asset details
+      </p>
+      <p>
+         <a href="https://blockstream.info/liquid/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(0,255,0)">blockstream.info</a>
+         <a href="https://liquid.network/assets/asset/4d65755f4cbb762083a8ddb01559e6f93a68e26f6d8abeb96db4484117113dc1" target="_blank" style="color:rgb(0,255,0)">mempool.space</a>
+      </p>
+      <p style="color:rgb(0,255,0); font-size:16px;">
+         Wallets
+      </p>
+      <p>
+         <a href="https://vulpem.com/marina" target="_blank" style="color:rgb(0,255,0)">Marina</a>
+         <a href="https://blockstream.com/green/" target="_blank" style="color:rgb(0,255,0)">Blockstream Green</a>
+         <a href="https://sideswap.io/" target="_blank" style="color:rgb(0,255,0)">SideSwap</a>
+      </p>
+      <p style="color:rgb(0,255,0); font-size:16px;">
+         Markets
+      </p>
+      <p>
+         <a href="https://sideswap.io/swap-market/?product=Jew" target="_blank" style="color:rgb(0,255,0)">SideSwap</a>
+         <a href="https://tdex.network/" target="_blank" style="color:rgb(0,255,0)">TDEX</a>
+      </p>
+   </center>
 </html>
