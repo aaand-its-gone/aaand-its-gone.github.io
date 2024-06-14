@@ -1,15 +1,26 @@
 const canvas = document.getElementById('canv');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 const ctx = canvas.getContext('2d');
-
-const w = canvas.width = document.body.offsetWidth;
-const h = canvas.height = document.body.offsetHeight;
-const cols = Math.floor(w / 20) + 1;
-const ypos = Array(cols).fill(0);
+let cols = Math.floor(window.innerWidth / 20) + 1;
+let ypos = Array(cols).fill(0);
 
 ctx.fillStyle = '#000';
-ctx.fillRect(0, 0, w, h);
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 function matrix () {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  
+  if (canvas.width !== w) {
+    canvas.width = w;
+    cols = Math.floor(window.innerWidth / 20) + 1;
+    ypos = Array(cols).fill(0);
+  }
+  if (canvas.height !== h) {
+    canvas.height = h;
+  }
+
   ctx.fillStyle = '#0001';
   ctx.fillRect(0, 0, w, h);
 
