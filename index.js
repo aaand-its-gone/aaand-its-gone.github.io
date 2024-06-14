@@ -1,34 +1,41 @@
-var c = document.getElementById("c");
-var ctx = c.getContext("2d");
+const canvas = document.getElementById('Matrix');
+const context = canvas.getContext('2d');
 
-c.height = window.innerHeight;
-c.width = window.innerWidth;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-var chinese =
-  'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const nums = '0123456789';
 
-chinese = chinese.split("");
+const alphabet = katakana + latin + nums;
 
-var font_size = 10;
-var columns = c.width / font_size;
+const fontSize = 16;
+const columns = canvas.width/fontSize;
 
-var drops = [];
+const rainDrops = [];
 
-for (var x = 0; x < columns; x++) drops[x] = 1;
-
-function draw() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.05";
-  ctx.fillRect(0, 0, c.width, c.height);
-  ctx.fillStyle = "#0F0";
-  ctx.font = font_size + "px arial";
-
-  for (var i = 0; i < drops.length; i++) {
-    var text = chinese[Math.floor(Math.random() * chinese.length)];
-    ctx.fillText(text, i * font_size, drops[i] * font_size);
-
-    if (drops[i] * font_size > c.height && Math.random() > 0.975) drops[i] = 0;
-    drops[i]++;
-  }
+for( let x = 0; x < columns; x++ ) {
+    rainDrops[x] = 1;
 }
 
-setInterval(draw,33)
+const draw = () => {
+    context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    
+    context.fillStyle = '#0F0';
+    context.font = fontSize + 'px monospace';
+
+    for(let i = 0; i < rainDrops.length; i++)
+    {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        context.fillText(text, i*fontSize, rainDrops[i]*fontSize);
+        
+        if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
+            rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+    }
+};
+
+setInterval(draw, 30);
