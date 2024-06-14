@@ -11,17 +11,24 @@
 
 
 <style>
-body, html {
-  margin: 0px; 
-  padding: 0px; 
+	
+body {
+  margin: 0;
+  background-color: #000;
 }
 
-canvas {
-  z-index: 999; 
-  margin: 0px; 
-  padding: 0px; 
-  background-color: transparent; 
-  position: absolute; 
+.container {
+  background-color: rgba(255, 255, 255, 0.85);
+  margin: 50px 10%;
+  padding: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+#canv {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 </style>
