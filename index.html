@@ -29,44 +29,47 @@ canvas {
 
 
 <script>
-var rainNum = 100;
+const canvas = document.getElementById('c');
+const context = canvas.getContext('2d');
 
-var canvas = document.getElementById('c');
-var ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-var w = window.innerWidth / 1.1; var h = window.innerHeight / 1.1;
-var x = 100; var y = 100;
+const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const nums = '0123456789';
 
-var rain = [];
-for(i = 0; i < rainNum; i++) {
-  rain.push(new newRain);
+const alphabet = katakana + latin + nums;
+
+const fontSize = 16;
+const columns = canvas.width/fontSize;
+
+const rainDrops = [];
+
+for( let x = 0; x < columns; x++ ) {
+	rainDrops[x] = 1;
 }
 
-function newRain() {
-  this.x = Math.random() * w;
-  this.y = Math.random() * h;
-}
+const draw = () => {
+	context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	context.fillStyle = '#0F0';
+	context.font = fontSize + 'px monospace';
 
-var draw = function() {
-  c.width = w;
-  c.height = h;
-
-  for(t = 0; t < rain.length; t++) {
-    var r = rain[t];
-
-    ctx.beginPath();
-    ctx.fillStyle = 'black';
-    ctx.fillRect(r.x, r.y, 2, 20);
-
-    r.y++;
-
-    if(r.y > h + 20) {
-      r.y = -20;
-    }
-  }
+	for(let i = 0; i < rainDrops.length; i++)
+	{
+		const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+		context.fillText(text, i*fontSize, rainDrops[i]*fontSize);
+		
+		if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
+			rainDrops[i] = 0;
+        }
+		rainDrops[i]++;
+	}
 };
 
-setInterval(draw, 3);
+setInterval(draw, 30);
 </script>
 
 
